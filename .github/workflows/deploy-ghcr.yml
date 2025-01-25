@@ -27,6 +27,6 @@ jobs:
           docker build . --tag ghcr.io/fortnet-dev/bordmonitor:latest
           docker push ghcr.io/fortnet-dev/bordmonitor:latest
 
-      # - name: "Update instance"
-      #   run: |
-      #     curl -X POST ${{ secrets.PORTAINER_WEBHOOK_URL }}
+      - name: "Update instance"
+        run: |
+          curl -X POST ${{ secrets.PORTAINER_WEBHOOK_URL }}
