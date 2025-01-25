@@ -24,8 +24,8 @@ jobs:
 
       - name: "Build Image"
         run: |
-          docker build . --tag ghcr.io/fortnet/bordmonitor:latest
-          docker push ghcr.io/fortnet/bordmonitor:latest
+          docker build . --tag ghcr.io/fortnet-dev/bordmonitor:latest
+          docker push ghcr.io/fortnet-dev/bordmonitor:latest
 
       # - name: "Update instance"
       #   run: |

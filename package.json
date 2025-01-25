@@ -10,8 +10,8 @@
 		"postinstall": "nuxt prepare",
 		"lint": "eslint .",
 		"preview": "nuxt preview",
-		"docker:build": "docker build -t fortnet/bordmonitor .",
-		"docker:run": "docker run --rm -p 3000:3000 fortnet/bordmonitor"
+		"docker:build": "docker build -t fortnet-dev/bordmonitor .",
+		"docker:run": "docker run --rm -p 3000:3000 fortnet-dev/bordmonitor"
 	},
 	"dependencies": {
 		"@acab/reset.css": "^0.11.0",
