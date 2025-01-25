@@ -15,3 +15,7 @@ body,
 main {
 	height: 100%;
 }
+
+* {
+	user-select: none;
+}
