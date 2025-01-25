@@ -6,14 +6,19 @@
 
 <style scoped lang="scss">
 button {
-	background: hsl(0deg 0% 100% / 0.125);
-
 	padding: 0.125em 0.25em;
+	border-top: 0.2em solid transparent;
+	border-left: 0.2em solid transparent;
+	border-right: 0.2em solid transparent;
+	border-bottom: 0.2em solid transparent;
 
-	border-top: 0.2em solid white;
-	border-left: 0.2em solid white;
-	border-right: 0.2em solid black;
-	border-bottom: 0.2em solid black;
+	&:hover {
+		background: hsl(0deg 0% 100% / 0.125);
+		border-top: 0.2em solid white;
+		border-left: 0.2em solid white;
+		border-right: 0.2em solid black;
+		border-bottom: 0.2em solid black;
+	}
 
 	&:active {
 		background: hsl(0deg 0% 100% / 0);
