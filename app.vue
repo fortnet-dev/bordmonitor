@@ -7,12 +7,9 @@ const pixelateFactorPre = ref(0.35)
 const pixelateFactorPost = ref(0.25)
 
 const timestamp = ref(new Date())
-const timeInterval = setInterval(() => {
+useIntervalFn(() => {
 	timestamp.value = new Date()
 }, 1000)
-onUnmounted(() => {
-	clearInterval(timeInterval)
-})
 
 const timeFormatter = new Intl.DateTimeFormat("de-DE", {
 	hour: "numeric",
