@@ -1,0 +1,6 @@
+name: bordmonitor
+services:
+  bordmonitor:
+    image: ghcr.io/fortnet-dev/bordmonitor:latest
+    ports:
+      - 3814:3000
