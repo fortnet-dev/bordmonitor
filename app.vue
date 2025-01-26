@@ -119,7 +119,7 @@ main {
 	background: var(--background);
 	aspect-ratio: 4 / 3;
 
-	--height: 600px;
+	--height: min(600px, 95vh, calc(95vw / 4 * 3));
 	height: var(--height);
 	font-size: calc(var(--height) / 20);
 
