@@ -5,107 +5,51 @@ import "~/assets/globals.scss"
 const enablePixelate = ref(true)
 const pixelateFactorPre = ref(0.35)
 const pixelateFactorPost = ref(0.25)
-
-const timestamp = ref(new Date())
-useIntervalFn(() => {
-	timestamp.value = new Date()
-}, 1000)
-
-const timeFormatter = new Intl.DateTimeFormat("de-DE", {
-	hour: "numeric",
-	minute: "numeric",
-})
-const dateFormatter = new Intl.DateTimeFormat("de-DE", {
-	year: "numeric",
-	month: "2-digit",
-	day: "2-digit",
-})
-const weekdayFormatter = new Intl.DateTimeFormat("de-DE", {
-	weekday: "long",
-})
-const date = computed(() => {
-	return dateFormatter.format(timestamp.value)
-})
-const weekday = computed(() => {
-	return weekdayFormatter.format(timestamp.value)
-})
-const time = computed(() => {
-	return timeFormatter.format(timestamp.value)
-})
 </script>
 
 <template>
-	<main>
-		<div
-			class="aspect-container"
-			:style="{ filter: enablePixelate ? 'url(#pixelate)' : '' }"
-		>
-			<h1>MENU</h1>
+	<div
+		class="aspect-container"
+		:style="{ filter: enablePixelate ? 'url(#pixelate)' : '' }"
+	>
+		<NuxtPage />
+	</div>
 
-			<div class="grid">
-				<div class="column">
-					<UiButton>Bordcomputer</UiButton>
-					<UiButton>GPS-Navigation</UiButton>
-					<UiButton>Telefon</UiButton>
-					<UiButton>Code</UiButton>
-					<UiButton>Einstellungen</UiButton>
-				</div>
-				<div class="column">
-					<UiButton>TV</UiButton>
-					<UiButton>DSP</UiButton>
-					<UiButton>Standheiz./-lüftung</UiButton>
-					<UiButton style="visibility: hidden">hidden</UiButton>
-					<UiButton>Bildschirm aus</UiButton>
-				</div>
-			</div>
+	<div class="controls">
+		<label>
+			<input v-model="enablePixelate" type="checkbox" />
+			Pixelate
+		</label>
+		<label>
+			<input v-model="pixelateFactorPre" type="range" min="0" max="1" step="0.01" />
+			Pixelate factor pre ({{ pixelateFactorPre }})
+		</label>
+		<label>
+			<input v-model="pixelateFactorPost" type="range" min="0" max="1" step="0.01" />
+			Pixelate factor post ({{ pixelateFactorPost }})
+		</label>
+	</div>
 
-			<div class="bottom-bar">
-				<div class="left">
-					<span>{{ date }}</span>
-					<span>{{ weekday }}</span>
-				</div>
-				<div class="right">
-					<span class="time">{{ time }}</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="controls">
-			<label>
-				<input v-model="enablePixelate" type="checkbox" />
-				Pixelate
-			</label>
-			<label>
-				<input v-model="pixelateFactorPre" type="range" min="0" max="1" step="0.01" />
-				Pixelate factor pre ({{ pixelateFactorPre }})
-			</label>
-			<label>
-				<input v-model="pixelateFactorPost" type="range" min="0" max="1" step="0.01" />
-				Pixelate factor post ({{ pixelateFactorPost }})
-			</label>
-		</div>
-
-		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
-			<defs>
-				<filter id="pixelate" x="0" y="0">
-					<feFlood
-						x="2"
-						y="2"
-						:height="1 * pixelateFactorPre"
-						:width="1 * pixelateFactorPre"
-					/>
-					<feComposite :width="5 * pixelateFactorPre" :height="5 * pixelateFactorPre" />
-					<feTile result="a" />
-					<feComposite in="SourceGraphic" in2="a" operator="in" />
-					<feMorphology operator="dilate" :radius="2.5 * pixelateFactorPost" />
-				</filter>
-			</defs>
-		</svg>
-	</main>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+		<defs>
+			<filter id="pixelate" x="0" y="0">
+				<feFlood
+					x="2"
+					y="2"
+					:height="1 * pixelateFactorPre"
+					:width="1 * pixelateFactorPre"
+				/>
+				<feComposite :width="5 * pixelateFactorPre" :height="5 * pixelateFactorPre" />
+				<feTile result="a" />
+				<feComposite in="SourceGraphic" in2="a" operator="in" />
+				<feMorphology operator="dilate" :radius="2.5 * pixelateFactorPost" />
+			</filter>
+		</defs>
+	</svg>
 </template>
 
-<style scoped lang="scss">
-main {
+<style lang="scss">
+#__nuxt {
 	background: hsl(0deg 0% 20%);
 
 	display: flex;
@@ -135,21 +79,21 @@ main {
 	-webkit-font-smoothing: none;
 }
 
-.grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1em;
+main {
+	position: relative;
+	height: 100%;
+	width: 100%;
 
-	.column {
-		display: flex;
-		flex-direction: column;
-	}
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 h1 {
 	color: var(--accent-orange);
 	text-shadow: none;
 	margin: 0.5em 0;
+	margin-bottom: 1em;
 	font-weight: 300;
 }
 
@@ -187,5 +131,6 @@ h1 {
 .controls {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 </style>

@@ -1,7 +1,7 @@
 @import "@acab/reset.css";
 
 :root {
-	--background: hsl(37deg 29% 61%);
+	--background: hsl(37deg 25% 50%);
 	--background-light: hsl(37deg 93% 84%);
 	--accent-orange: hsl(38deg 100% 47%);
 	--accent-purple: hsl(292deg 29% 41%);
@@ -11,8 +11,7 @@
 
 html,
 body,
-#__nuxt,
-main {
+#__nuxt {
 	height: 100%;
 }
 
