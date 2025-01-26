@@ -20,7 +20,8 @@ button {
 		border-bottom: 0.2em solid black;
 	}
 
-	&:active {
+	&:active,
+	&.pressed {
 		background: hsl(0deg 0% 100% / 0);
 
 		border-top: 0.2em solid black;

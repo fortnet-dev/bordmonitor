@@ -4,20 +4,18 @@
 
 		<div class="grid">
 			<div class="column">
-				<UiButton>Bordcomputer</UiButton>
-				<UiButton>GPS-Navigation</UiButton>
-				<UiButton>Telefon</UiButton>
-				<UiButton>Code</UiButton>
-				<UiButton>
-					<NuxtLink to="/settings">Einstellungen</NuxtLink>
-				</UiButton>
+				<SlowLinkButton>Bordcomputer</SlowLinkButton>
+				<SlowLinkButton>GPS-Navigation</SlowLinkButton>
+				<SlowLinkButton>Telefon</SlowLinkButton>
+				<SlowLinkButton>Code</SlowLinkButton>
+				<SlowLinkButton to="/settings">Einstellungen</SlowLinkButton>
 			</div>
 			<div class="column">
-				<UiButton>TV</UiButton>
-				<UiButton>DSP</UiButton>
-				<UiButton>Standheiz./-lüftung</UiButton>
-				<UiButton style="visibility: hidden">hidden</UiButton>
-				<UiButton>Bildschirm aus</UiButton>
+				<SlowLinkButton>TV</SlowLinkButton>
+				<SlowLinkButton>DSP</SlowLinkButton>
+				<SlowLinkButton>Standheiz./-lüftung</SlowLinkButton>
+				<SlowLinkButton style="visibility: hidden">hidden</SlowLinkButton>
+				<SlowLinkButton>Bildschirm aus</SlowLinkButton>
 			</div>
 		</div>
 	</main>
