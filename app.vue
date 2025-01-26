@@ -2,9 +2,17 @@
 import "@fontsource-variable/jetbrains-mono"
 import "~/assets/globals.scss"
 
+const router = useRouter()
+router.beforeEach(async (to, from, next) => {
+	await artificialDelay(250)
+	next()
+})
+
 const enablePixelate = ref(true)
 const pixelateFactorPre = ref(0.35)
 const pixelateFactorPost = ref(0.25)
+
+const delayToggle = enableArtificialDelay
 </script>
 
 <template>
@@ -18,6 +26,10 @@ const pixelateFactorPost = ref(0.25)
 		</div>
 
 		<div class="controls">
+			<label>
+				<input v-model="delayToggle" type="checkbox" />
+				Artificial delay
+			</label>
 			<label>
 				<input v-model="enablePixelate" type="checkbox" />
 				Pixelate

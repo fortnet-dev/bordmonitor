@@ -1,1 +1,6 @@
-export const wait = (t: number): Promise<void> => new Promise((r) => setTimeout(r, t))
+export const enableArtificialDelay = ref(true)
+export const artificialDelay = (t: number): Promise<void> => {
+	if (!enableArtificialDelay.value) return Promise.resolve()
+
+	return new Promise((r) => setTimeout(r, t))
+}

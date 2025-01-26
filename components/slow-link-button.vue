@@ -8,8 +8,9 @@ const loading = ref(false)
 const onClick = async () => {
 	loading.value = true
 
-	await wait(250)
 	if (props.to) await router.push(props.to)
+
+	await artificialDelay(250)
 	loading.value = false
 }
 </script>

@@ -35,10 +35,10 @@ const settings = reactive({
 })
 
 onMounted(async () => {
-	await wait(250)
+	await artificialDelay(250)
 
 	for (const key of Object.keys(settings) as (keyof typeof settings)[]) {
-		await wait(10)
+		await artificialDelay(10)
 		settings[key].value = Math.floor(Math.random() * settings[key].options.length)
 	}
 })
