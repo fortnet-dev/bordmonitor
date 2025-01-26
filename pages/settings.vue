@@ -1,28 +1,65 @@
+<script setup lang="ts">
+const settings = reactive({
+	Sprache: {
+		value: -1,
+		options: ["D", "GB", "F"],
+	},
+	Distanz: {
+		value: -1,
+		options: ["km", "miles"],
+	},
+	Verbrauch: {
+		value: -1,
+		options: ["l/100km", "mpg", "km/l"],
+	},
+	Temperatur: {
+		value: -1,
+		options: ["°C", "°F"],
+	},
+	Uhr: {
+		value: -1,
+		options: ["24 Std", "12 Std", "stellen"],
+	},
+	Memo: {
+		value: -1,
+		options: ["ein", "aus"],
+	},
+	Datum: {
+		value: -1,
+		options: ["tt.mm", "mm.tt", "stellen"],
+	},
+	"Audio-BC": {
+		value: -1,
+		options: ["ein", "aus"],
+	},
+})
+
+onMounted(async () => {
+	await wait(250)
+
+	for (const key of Object.keys(settings) as (keyof typeof settings)[]) {
+		await wait(10)
+		settings[key].value = Math.floor(Math.random() * settings[key].options.length)
+	}
+})
+</script>
+
 <template>
 	<main>
 		<h2>Einstellungen</h2>
 
 		<div class="grid">
 			<div class="left">
-				<UiButton>Sprache</UiButton>
-				<UiButton>Distanz</UiButton>
-				<UiButton>Verbrauch</UiButton>
-				<UiButton>Temperatur</UiButton>
-				<UiButton>Uhr</UiButton>
-				<UiButton>Memo</UiButton>
-				<UiButton>Datum</UiButton>
-				<UiButton>Audio-BC</UiButton>
+				<UiButton v-for="(_, key) in settings" :key="key">{{ key }}</UiButton>
 			</div>
 			<div class="right">
 				<div class="row">
-					<UiSelect :options="['D', 'GB', 'F']" />
-					<UiSelect :options="['km', 'miles']" />
-					<UiSelect :options="['l/100km', 'mpg', 'km/l']" />
-					<UiSelect :options="['°C', '°F']" />
-					<UiSelect :options="['24 Std', '12 Std', 'stellen']" />
-					<UiSelect :options="['ein', 'aus']" />
-					<UiSelect :options="['tt.mm', 'mm.tt', 'stellen']" />
-					<UiSelect :options="['ein', 'aus']" />
+					<UiSelect
+						v-for="(setting, key) in settings"
+						:key="key"
+						v-model="setting.value"
+						:options="setting.options"
+					/>
 				</div>
 			</div>
 		</div>

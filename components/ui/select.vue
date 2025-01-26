@@ -7,15 +7,7 @@ const props = defineProps({
 })
 const modelValue = defineModel({
 	type: Number,
-	// default: 0,
-})
-
-onMounted(async () => {
-	await wait(200)
-
-	if (modelValue.value === undefined) {
-		modelValue.value = Math.floor(Math.random() * props.options.length)
-	}
+	required: true,
 })
 </script>
 
@@ -26,6 +18,7 @@ onMounted(async () => {
 			:key="option + index"
 			class="option"
 			:class="{ selected: index === modelValue }"
+			@click="modelValue = index"
 		>
 			{{ option }}
 		</div>
