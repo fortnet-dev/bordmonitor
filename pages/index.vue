@@ -1,35 +1,6 @@
-<script setup lang="ts">
-const timestamp = ref(new Date())
-useIntervalFn(() => {
-	timestamp.value = new Date()
-}, 1000)
-
-const timeFormatter = new Intl.DateTimeFormat("de-DE", {
-	hour: "numeric",
-	minute: "numeric",
-})
-const dateFormatter = new Intl.DateTimeFormat("de-DE", {
-	year: "numeric",
-	month: "2-digit",
-	day: "2-digit",
-})
-const weekdayFormatter = new Intl.DateTimeFormat("de-DE", {
-	weekday: "long",
-})
-const date = computed(() => {
-	return dateFormatter.format(timestamp.value)
-})
-const weekday = computed(() => {
-	return weekdayFormatter.format(timestamp.value)
-})
-const time = computed(() => {
-	return timeFormatter.format(timestamp.value)
-})
-</script>
-
 <template>
 	<main>
-		<h1>MENU</h1>
+		<h1>Menu</h1>
 
 		<div class="grid">
 			<div class="column">
@@ -37,7 +8,9 @@ const time = computed(() => {
 				<UiButton>GPS-Navigation</UiButton>
 				<UiButton>Telefon</UiButton>
 				<UiButton>Code</UiButton>
-				<UiButton>Einstellungen</UiButton>
+				<UiButton>
+					<NuxtLink to="/settings">Einstellungen</NuxtLink>
+				</UiButton>
 			</div>
 			<div class="column">
 				<UiButton>TV</UiButton>
@@ -47,20 +20,14 @@ const time = computed(() => {
 				<UiButton>Bildschirm aus</UiButton>
 			</div>
 		</div>
-
-		<div class="bottom-bar">
-			<div class="left">
-				<span>{{ date }}</span>
-				<span>{{ weekday }}</span>
-			</div>
-			<div class="right">
-				<span class="time">{{ time }}</span>
-			</div>
-		</div>
 	</main>
 </template>
 
 <style scoped lang="scss">
+main {
+	align-items: center;
+}
+
 .grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;

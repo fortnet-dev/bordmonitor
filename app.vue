@@ -8,26 +8,29 @@ const pixelateFactorPost = ref(0.25)
 </script>
 
 <template>
-	<div
-		class="aspect-container"
-		:style="{ filter: enablePixelate ? 'url(#pixelate)' : '' }"
-	>
-		<NuxtPage />
-	</div>
+	<div class="center">
+		<div
+			class="aspect-container"
+			:style="{ filter: enablePixelate ? 'url(#pixelate)' : '' }"
+		>
+			<NuxtPage />
+			<BottomBar />
+		</div>
 
-	<div class="controls">
-		<label>
-			<input v-model="enablePixelate" type="checkbox" />
-			Pixelate
-		</label>
-		<label>
-			<input v-model="pixelateFactorPre" type="range" min="0" max="1" step="0.01" />
-			Pixelate factor pre ({{ pixelateFactorPre }})
-		</label>
-		<label>
-			<input v-model="pixelateFactorPost" type="range" min="0" max="1" step="0.01" />
-			Pixelate factor post ({{ pixelateFactorPost }})
-		</label>
+		<div class="controls">
+			<label>
+				<input v-model="enablePixelate" type="checkbox" />
+				Pixelate
+			</label>
+			<label>
+				<input v-model="pixelateFactorPre" type="range" min="0" max="1" step="0.01" />
+				Pixelate factor pre ({{ pixelateFactorPre }})
+			</label>
+			<label>
+				<input v-model="pixelateFactorPost" type="range" min="0" max="1" step="0.01" />
+				Pixelate factor post ({{ pixelateFactorPost }})
+			</label>
+		</div>
 	</div>
 
 	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
@@ -67,7 +70,9 @@ const pixelateFactorPost = ref(0.25)
 	height: var(--height);
 	font-size: calc(var(--height) / 20);
 
-	text-shadow: 1px 1px 2px black;
+	text-shadow:
+		1px 1px 2px black,
+		1px 1px 2px black;
 	font-weight: 400;
 
 	font-family: "JetBrains Mono Variable", cursive;
@@ -86,46 +91,32 @@ main {
 
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 }
 
 h1 {
 	color: var(--accent-orange);
-	text-shadow: none;
 	margin: 0.5em 0;
 	margin-bottom: 1em;
+
+	text-shadow: none;
 	font-weight: 300;
+	text-transform: uppercase;
 }
 
-.bottom-bar {
-	position: absolute;
+h2 {
+	color: var(--accent-orange);
+	padding: 0.1em 0.5em;
 
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	bottom: 0;
-	width: 100%;
-
-	background: var(--background-light);
-	color: black;
 	text-shadow: none;
-	font-weight: 800;
+	font-weight: 250;
+	text-transform: uppercase;
+	font-size: 1.25em;
 
-	padding: 0 0.5em;
+	border-bottom: 2px solid var(--accent-orange);
+}
 
-	.left {
-		display: flex;
-		gap: 2em;
-		font-size: 1.05em;
-	}
-
-	.time {
-		font-size: 1.5em;
-		line-height: 1;
-		margin-right: 0.5em;
-		vertical-align: text-top;
-		font-weight: 600;
-	}
+a {
+	text-decoration: none;
 }
 
 .controls {
