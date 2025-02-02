@@ -76,12 +76,14 @@ const delayToggle = enableArtificialDelay
 .aspect-container {
 	position: relative;
 	background: var(--background);
-	aspect-ratio: 4 / 3;
 
 	--height: min(600px, 95vh, calc(95vw / 4 * 3));
+	--width: calc(var(--height) * 4 / 3);
 	height: var(--height);
-	font-size: calc(var(--height) / 20);
+	width: var(--width);
+	aspect-ratio: 4 / 3;
 
+	font-size: calc(var(--height) / 20);
 	text-shadow:
 		1px 1px 2px black,
 		1px 1px 2px black;
@@ -93,13 +95,17 @@ const delayToggle = enableArtificialDelay
 	align-items: center;
 	flex-direction: column;
 
+	// overflow: hidden;
+
 	-webkit-font-smoothing: none;
 }
 
 main {
 	position: relative;
-	height: 100%;
+	flex-grow: 1;
+	max-height: 100%;
 	width: 100%;
+	overflow: hidden;
 
 	display: flex;
 	flex-direction: column;

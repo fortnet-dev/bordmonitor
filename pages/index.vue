@@ -7,7 +7,7 @@
 				<SlowLinkButton>Bordcomputer</SlowLinkButton>
 				<SlowLinkButton>GPS-Navigation</SlowLinkButton>
 				<SlowLinkButton>Telefon</SlowLinkButton>
-				<SlowLinkButton>Code</SlowLinkButton>
+				<SlowLinkButton to="/logger">Logbuch</SlowLinkButton>
 				<SlowLinkButton to="/settings">Einstellungen</SlowLinkButton>
 			</div>
 			<div class="column">
