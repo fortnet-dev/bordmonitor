@@ -3,7 +3,7 @@ import type { SocketServer } from "~/types/socket.io"
 import { Server as Engine } from "engine.io"
 import { Server } from "socket.io"
 import { defineEventHandler } from "h3"
-import { socketHandler } from "../socket-handler"
+import { dbusLogger } from "../fleisch/dbus-logger"
 
 export default defineNitroPlugin((nitroApp) => {
 	const engine = new Engine()
@@ -11,7 +11,14 @@ export default defineNitroPlugin((nitroApp) => {
 
 	io.bind(engine)
 
-	socketHandler(io)
+	dbusLogger(io)
+
+	io.on("connection", (socket) => {
+		console.log("socket connected", socket.id)
+		socket.on("disconnect", () => {
+			console.log("socket disconnected", socket.id)
+		})
+	})
 
 	nitroApp.router.use(
 		"/socket.io/",

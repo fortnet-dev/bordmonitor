@@ -1,4 +1,10 @@
 <script setup lang="ts">
+const socket = useSocket()
+
+socket.on("log", (data) => {
+	logLines.value.push(data)
+})
+
 const linesToAdd = [
 	`I want to fuck a toaster.`,
 	`Just the thought of stuffing my dick in a tight little breadslot makes me rock hard.`,

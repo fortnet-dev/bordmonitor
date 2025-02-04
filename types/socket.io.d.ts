@@ -3,6 +3,7 @@ import type { Socket } from "socket.io-client"
 
 type ServerToClientEvents = {
 	hello: (callback: (data: string) => void) => void
+	log: (data: string) => void
 }
 
 type ClientToServerEvents = {
