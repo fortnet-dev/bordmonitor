@@ -11,7 +11,7 @@
 		"lint": "eslint .",
 		"preview": "nuxt preview",
 		"docker:build": "docker build -t fortnet-dev/bordmonitor .",
-		"docker:run": "docker run --rm -p 3000:3000 fortnet-dev/bordmonitor"
+		"docker:run": "./docker/run.sh"
 	},
 	"dependencies": {
 		"@acab/reset.css": "^0.11.0",
