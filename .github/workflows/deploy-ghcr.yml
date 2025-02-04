@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  push-image:
+  build:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -23,6 +23,26 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
 
       - name: "Build Image"
+        run: |
+          docker build . -t ghcr.io/fortnet-dev/bordmonitor:latest
+          docker push ghcr.io/fortnet-dev/bordmonitor:latest
+
+  build-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@v4
+
+      - name: "Login to GitHub Container Registry"
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+
+      - name: "Build Preview Image"
         run: |
           docker build . -t ghcr.io/fortnet-dev/bordmonitor-preview:latest -f docker/hosted-preview/Dockerfile
           docker push ghcr.io/fortnet-dev/bordmonitor-preview:latest
